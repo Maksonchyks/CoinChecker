@@ -1,0 +1,75 @@
+# Build results
+bin/
+obj/
+[Ll]og/
+[Ll]ogs/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+
+# VSCode
+.vscode/
+
+# Publish
+publish/
+*.publish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# MSTest/Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# StyleCop
+StyleCopReport.xml
+
+# Logs
+*.log
+
+# Secrets
+appsettings.*.json
+secrets.json
+
+# DotNet tools
+.tool/
+
+# JetBrains & ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Windows-specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Crash dumps
+*.dmp
+
+# Others
+*.cache
+*.dbmdl
+*.bak
+*.tmp
+~$*
+*~
