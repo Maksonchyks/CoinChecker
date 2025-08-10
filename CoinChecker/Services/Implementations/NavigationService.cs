@@ -13,16 +13,15 @@ namespace CoinChecker.Services.Implementations
     public class NavigationService : INavigationService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly MainViewModel _mainViewModel;
-        public NavigationService(MainViewModel mainViewModel, IServiceProvider serviceProvider) 
+        public NavigationService(IServiceProvider serviceProvider) 
         {
             _serviceProvider = serviceProvider;
-            _mainViewModel = mainViewModel;
         }
         public void NavigateTo<TPage>() where TPage : ViewModelBase
         {
-            var newViewModel = _serviceProvider.GetService<TPage>();
-            _mainViewModel.CurrentView = newViewModel;
+            var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+            var newViewModel = _serviceProvider.GetRequiredService<TPage>();
+            mainViewModel.CurrentView = newViewModel;
         }
     }
 }

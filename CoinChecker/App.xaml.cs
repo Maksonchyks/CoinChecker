@@ -5,6 +5,7 @@ using CoinChecker.Services.Interfaces;
 using CoinChecker.Services.Implementations;
 using Microsoft.Extensions.DependencyInjection;
 using CoinChecker.ViewModels;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CoinChecker;
 
@@ -17,27 +18,32 @@ public partial class App : Application
     public App()
     {
         IServiceCollection services = new ServiceCollection();
-        services.AddSingleton<INavigationService, NavigationService>();
 
         services.AddSingleton<MainViewModel>();
+        services.AddSingleton<SidebarViewModel>();
 
         services.AddTransient<HomeViewModel>();
         services.AddTransient<DetailsViewModel>();
+
+        services.AddSingleton<INavigationService, NavigationService>();
 
         _serviceProvider = services.BuildServiceProvider();
     }
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        var mainViewModel = _serviceProvider.GetService<MainViewModel>();
-
-        var mainWindow = new MainWindow();
-
-        mainWindow.DataContext = mainViewModel;
-        mainWindow.Show();
-
         base.OnStartup(e);
-    }
+        var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+        var sidebarViewModel = _serviceProvider.GetRequiredService<SidebarViewModel>();
 
+        mainViewModel.SidebarViewModel = sidebarViewModel;
+
+        var mainWindow = new MainWindow
+        {
+            DataContext = mainViewModel
+        };
+
+        mainWindow.Show();
+    }
 }
 
