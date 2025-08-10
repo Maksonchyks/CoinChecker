@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoinChecker.Core;
 
 namespace CoinChecker.ViewModels
 {
-    public class DetailsViewModel
+    public class DetailsViewModel : ViewModelBase
     {
     }
 }
