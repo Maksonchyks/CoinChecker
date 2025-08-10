@@ -18,7 +18,7 @@ namespace CoinChecker.Views
     /// <summary>
     /// Interaction logic for DetailsPage.xaml
     /// </summary>
-    public partial class DetailsPage : Page
+    public partial class DetailsPage : UserControl
     {
         public DetailsPage()
         {

@@ -18,7 +18,7 @@ namespace CoinChecker.Views
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : UserControl
     {
         public HomePage()
         {

@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CoinChecker"
+        xmlns:local="clr-namespace:CoinChecker" 
+        xmlns:viewmodels="clr-namespace:CoinChecker.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Background="#777888">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Background="#777">
+            <StackPanel Grid.Column="0" DataContext="{Binding SidebarViewModel}">
+                <Button Content="На Головну" Command="{Binding NavigateToHomeCommand}" />
+                <Button Content="На Детальну" Command="{Binding NavigateToDetailsCommand}" />
+            </StackPanel>
+        </Border>
 
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

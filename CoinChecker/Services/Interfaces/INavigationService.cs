@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CoinChecker.Core;
 
-namespace CoinChecker.ViewModels
+namespace CoinChecker.Services.Interfaces
 {
-    public class DetailsViewModel : ViewModelBase
+    public interface INavigationService
     {
+        void NavigateTo<TPage>() where TPage : ViewModelBase;
     }
 }
