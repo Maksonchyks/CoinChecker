@@ -25,6 +25,10 @@ public partial class App : Application
         services.AddTransient<HomeViewModel>();
         services.AddTransient<DetailsViewModel>();
 
+        services.AddHttpClient<ICryptoService, CryptoService>(client =>
+        {
+            client.BaseAddress = new Uri("https://rest.coincap.io/v3/");
+        });
         services.AddSingleton<INavigationService, NavigationService>();
 
         _serviceProvider = services.BuildServiceProvider();
@@ -35,8 +39,13 @@ public partial class App : Application
         base.OnStartup(e);
         var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
         var sidebarViewModel = _serviceProvider.GetRequiredService<SidebarViewModel>();
+        var navService = _serviceProvider.GetRequiredService<INavigationService>();
 
         mainViewModel.SidebarViewModel = sidebarViewModel;
+
+        var homeViewModel = _serviceProvider.GetRequiredService<HomeViewModel>();
+
+        navService.NavigateTo<HomeViewModel>();
 
         var mainWindow = new MainWindow
         {
