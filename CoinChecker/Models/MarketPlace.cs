@@ -8,7 +8,7 @@ namespace CoinChecker.Models
 {
     public class MarketPlace
     {
-        public string exchangeId { get; set; }
-        public string exchangeUrl { get; set; }
+        public string? ExchangeId { get; set; }
+        public string? ExchangeUrl { get; set; }
     }
 }
