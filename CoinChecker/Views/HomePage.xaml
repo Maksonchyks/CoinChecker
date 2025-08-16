@@ -8,6 +8,19 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#252525">
     <Grid>
-            
+        <StackPanel Margin="20">
+
+            <ListView ItemsSource="{Binding TopCurrencies}" Margin="0,20,0,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ідентифікатор" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Назва" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Символ" DisplayMemberBinding="{Binding Symbol}" />
+                        <GridViewColumn Header="Ціна" DisplayMemberBinding="{Binding Price, StringFormat={}{0:C2}}" />
+                        <GridViewColumn Header="Оборот за 24г" DisplayMemberBinding="{Binding VolumeUsd24Hr}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>
