@@ -16,12 +16,14 @@ namespace CoinChecker.ViewModels
         private readonly INavigationService _navigationService;
         public ICommand NavigateToHomeCommand { get; }
         public ICommand NavigateToDetailsCommand { get; }
+        public ICommand NavigateToExchangesCommand { get; }
         public SidebarViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
             NavigateToDetailsCommand = new RelayCommand(() => _navigationService.NavigateTo<DetailsViewModel>());
             NavigateToHomeCommand = new RelayCommand(() => _navigationService.NavigateTo<HomeViewModel>());
+            NavigateToExchangesCommand = new RelayCommand(() => _navigationService.NavigateTo<ExchangesViewModel>());
         }
     }
 }

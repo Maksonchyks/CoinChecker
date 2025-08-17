@@ -8,6 +8,93 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#303030">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBox Background="White" x:Name="CryptoDetailsSlug" Text="Введіть валюту" Width="200" Margin="0,10,10,10"/>
+
+            <Button Content="Завантажити деталі валюти"
+                    Command="{Binding LoadCryptoDetailsCommand}"
+                    CommandParameter="{Binding Text, ElementName=CryptoDetailsSlug}"/>
+
+
+            <TextBox Background="White" x:Name="TopMarketsBySlug" Text="Введіть валюту" Width="200" Margin="0,10,10,10"/>
+
+
+            <Button Content="Завантажити деталі валюти"
+                Command="{Binding LoadTopMarketsBySlugCommand}"
+                CommandParameter="{Binding Text, ElementName=TopMarketsBySlug}"/>
+        </StackPanel>
+
+        <StackPanel Background="White" Grid.Row="1">
+            <TextBlock Text="Деталі валюти" FontSize="15" FontWeight="Bold" Margin="0,0,600,10"/>
+
+            <TextBlock >
+                <Run Text="Id: "/>
+                <Run Text="{Binding CryptoDetailsSlug.Id}"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Назва: "/>
+                <Run Text="{Binding CryptoDetailsSlug.Name}"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Символ: "/>
+                <Run Text="{Binding CryptoDetailsSlug.Symbol}"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Загальна пропозиція: "/>
+                <Run Text="{Binding CryptoDetailsSlug.Supply}"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Ринкова капіталізація: "/>
+                <Run Text="{Binding CryptoDetailsSlug.MarketCapUsd, StringFormat='F2'}"/>
+                <Run Text=" USD"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Обсяг за 24 год: "/>
+                <Run Text="{Binding CryptoDetailsSlug.VolumeUsd24Hr, StringFormat='F2'}"/>
+                <Run Text=" USD"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Ціна: "/>
+                <Run Text="{Binding CryptoDetailsSlug.Price, StringFormat='F2'}"/>
+                <Run Text=" USD"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Зміна за 24 год: "/>
+                <Run Text="{Binding CryptoDetailsSlug.ChangePercent24Hr, StringFormat='F2'}"/>
+                <Run Text="%"/>
+            </TextBlock>
+            <TextBlock >
+                <Run Text="Посиланняв: "/>
+                <Hyperlink NavigateUri="{Binding CryptoDetailsSlug.Explorer}">
+                    <Run Text="{Binding CryptoDetailsSlug.Explorer}"/>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Background="White" Grid.Row="0" Text="Ринки" FontSize="15" FontWeight="Bold" Margin="0,0,600,10"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding TopMarketsBySlug}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Біржа" DisplayMemberBinding="{Binding ExchangeId}" Width="150"/>
+                        <GridViewColumn Header="База" DisplayMemberBinding="{Binding BaseSymbol}" Width="100"/>
+                        <GridViewColumn Header="Котирування" DisplayMemberBinding="{Binding QuoteSymbol}" Width="100"/>
+                        <GridViewColumn Header="Обсяг (24г)" DisplayMemberBinding="{Binding VolumeUsd24Hr}" Width="150"/>
+                        <GridViewColumn Header="Ціна" DisplayMemberBinding="{Binding PriceUsd}" Width="120"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </UserControl>

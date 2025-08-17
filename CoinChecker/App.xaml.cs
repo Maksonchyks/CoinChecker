@@ -24,6 +24,7 @@ public partial class App : Application
 
         services.AddTransient<HomeViewModel>();
         services.AddTransient<DetailsViewModel>();
+        services.AddTransient<ExchangesViewModel>();
 
         services.AddHttpClient<ICryptoService, CryptoService>(client =>
         {
