@@ -17,6 +17,7 @@
             <StackPanel Grid.Column="0" DataContext="{Binding SidebarViewModel}">
                 <Button Content="На Головну" Command="{Binding NavigateToHomeCommand}" />
                 <Button Content="На Детальну" Command="{Binding NavigateToDetailsCommand}" />
+                <Button Content="На Біржу" Command="{Binding NavigateToExchangesCommand}" />
             </StackPanel>
         </Border>
 

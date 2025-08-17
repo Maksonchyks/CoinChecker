@@ -11,6 +11,9 @@
         <DataTemplate DataType ="{x:Type viewModel:HomeViewModel}">
             <view:HomePage/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType ="{x:Type viewModel:ExchangesViewModel}">
+            <view:ExchangesPage/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
