@@ -8,6 +8,56 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#454545">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10">
+            <Button Content="Завантажити всі біржі" 
+                    Command="{Binding LoadAllMarketPlacesAsyncCommand}" 
+                    Margin="0,0,0,10"/>
+
+            <TextBlock Text="Список бірж" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ListView ItemsSource="{Binding AllMarketPlaces}" Height="200">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Назва біржі" DisplayMemberBinding="{Binding ExchangeId}" Width="150"/>
+                        <GridViewColumn Header="Посилання на біржу" DisplayMemberBinding="{Binding ExchangeUrl}" Width="Auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Background="White" Grid.Row="1" Margin="10,0">
+            <TextBlock Text="Введіть назву біржі (наприклад, binance)" Margin="0,10,0,5"/>
+            <TextBox x:Name="ExchangeIdTextBox" Width="250" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+
+            <Button Content="Завантажити валюти за біржею" 
+                    Command="{Binding LoadTopCurrencyByMarketAsyncCommand}"
+                    CommandParameter="{Binding Text, ElementName=ExchangeIdTextBox}"
+                    HorizontalAlignment="Left" Margin="0,0,0,10"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Топ-валюти на вибраній біржі" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding TopCurrencyByMarket}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Назва" DisplayMemberBinding="{Binding ExchangeId}" Width="100"/>
+                        <GridViewColumn Header="База" DisplayMemberBinding="{Binding BaseSymbol}" Width="100"/>
+                        <GridViewColumn Header="Котирування" DisplayMemberBinding="{Binding QuoteSymbol}" Width="100"/>
+                        <GridViewColumn Header="Обсяг (24г)" DisplayMemberBinding="{Binding VolumeUsd24Hr}" Width="150"/>
+                        <GridViewColumn Header="Ціна" DisplayMemberBinding="{Binding PriceUsd}" Width="120"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
     </Grid>
 </UserControl>
